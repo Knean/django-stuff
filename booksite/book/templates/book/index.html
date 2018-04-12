@@ -1,0 +1,12 @@
+
+<ul>
+        {% for chapter in chapter_list %}
+    <li>
+            {{ chapter.chapter_text }}
+            <img src = {{chapter.chapter_image}}>
+            <a href={% url 'book:detail_chapter' chapter.id %}>some stuff</a>
+    </li>
+    {% endfor %}
+</ul>
+ 
+
