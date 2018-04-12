@@ -4,6 +4,7 @@ from .models import Chapter
 from django.template import Template
 from django.template.loader import get_template
 from django.http import Http404
+from django.shortcuts import render
 # Create your views here.
 def home(request):
 	template=get_template('book/index.html')
@@ -14,7 +15,8 @@ def home(request):
 
 def detailchapter(request, chapter_id):
 	try:
-		chapter_story= Chapter.objects.get(id=chapter_id).chapter_text
+		chapter= Chapter.objects.get(id=chapter_id)
 	except Chapter.DoesNotExist:
 		raise Http404('no such book')
-	return HttpResponse('its a chapter numbered: '+str(chapter_id)+'and it goes like this:<br> '+str(chapter_story))
+	return  render(request,'book/detail.html',context= {'chapter':chapter})
+	
