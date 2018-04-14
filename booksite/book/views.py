@@ -14,9 +14,16 @@ def home(request):
 	
 
 def detailchapter(request, chapter_id):
+	print(request.body)
 	try:
 		chapter= Chapter.objects.get(id=chapter_id)
 	except Chapter.DoesNotExist:
 		raise Http404('no such book')
+	if  request.POST:
+		print(request.POST)
+		chapter.chapter_text = request.POST.get('text')
+		#chapter.save() 
+	
+
 	return  render(request,'book/detail.html',context= {'chapter':chapter})
 	
