@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Chapter
 from django.template import Template
 from django.template.loader import get_template
@@ -22,7 +22,9 @@ def detailchapter(request, chapter_id):
 	if  request.POST:
 		print(request.POST)
 		chapter.chapter_text = request.POST.get('text')
-		#chapter.save() 
+		print(request.POST.get('text'))
+		chapter.save() 
+		HttpResponseRedirect( 'book:detail')
 	
 
 	return  render(request,'book/detail.html',context= {'chapter':chapter})
