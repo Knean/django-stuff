@@ -5,6 +5,7 @@ from django.template import Template
 from django.template.loader import get_template
 from django.http import Http404
 from django.shortcuts import render
+from django.urls import reverse
 # Create your views here.
 def home(request):
 	template=get_template('book/index.html')
@@ -24,7 +25,7 @@ def detailchapter(request, chapter_id):
 		chapter.chapter_text = request.POST.get('text')
 		print(request.POST.get('text'))
 		chapter.save() 
-		HttpResponseRedirect( 'book:detail')
+		HttpResponseRedirect( reverse('book:detail_chapter',args=[chapter_id]))
 	
 
 	return  render(request,'book/detail.html',context= {'chapter':chapter})
