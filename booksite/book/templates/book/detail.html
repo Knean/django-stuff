@@ -10,15 +10,15 @@
         <li>{{answer}}</li>
         {% endfor %}
 </ul>  
-<form action ="{% url 'book:detail_chapter' chapter.id %}" method = 'post'>
+<form action ="{% url 'book:detail_chapter' 1 %}" method = 'post'>
         {% csrf_token %}
  
   
-    <input type=text value=' {{chapter.chapter_text}} 'name='text' id='text_input'>
+    <input type=text value= {{chapter.chapter_text}} name='text' id='text_input'>
     <label for ='text_input'>Text input</label>
     <br>
-    <input type=file name='image_field' id='image_field'>
-    <label for ='image_field'>image input</label>
+<!--     <input type=file name='image_field' id='image_field'>
+    <label for ='image_field'>image input</label> -->
     <br>
     <input type=datetime-local id="date_field" name='date_field'value ={{chapter.create_date}} id='date_field'>
     <label for ='date_field'>date  input</label>
