@@ -1,4 +1,10 @@
 from django.db import models
+from django.conf import settings
+from django.core.exceptions import ValidationError
+def validate_unique(self, theanswer):
+	for answer in self.answers:
+		if answer.chapter==theanswer.chapter:
+			raise ValidationError('only one answer per chapter')
 
 # Create your models here.
 class Chapter(models.Model):
@@ -15,3 +21,11 @@ class Answer(models.Model):
 	def __str__(self):
 		return self.answer_text
 	
+	
+class Profile(models.Model):
+	user=models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+	answers=models.ManyToManyField(Answer,validators=[validate_unique])
+
