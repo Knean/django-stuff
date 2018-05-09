@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
-def validate_unique(self, theanswer):
+def validate_uniques(theanswer):
+	
 	for answer in self.answers:
 		if answer.chapter==theanswer.chapter:
 			raise ValidationError('only one answer per chapter')
@@ -27,5 +28,6 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-	answers=models.ManyToManyField(Answer,validators=[validate_unique])
+	answers=models.ForeignKey(Answer,null=True,validators=[validate_uniques],on_delete=models.CASCADE)
+
 
