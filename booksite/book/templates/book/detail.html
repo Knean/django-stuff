@@ -5,6 +5,11 @@
   <script src="/detail.js">
       date_getter({{chapter.date_field}})
   </script> -->
+  {%load static%}
+  <script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 <ul>
         {% for answer in chapter.answer_set.all %}
         <li>{{answer}}</li>
