@@ -35,7 +35,11 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-	answers=models.ForeignKey(Answer,null=True,validators=[validate_uniques],on_delete=models.CASCADE)
+	answers=models.ForeignKey(Answer,null=True,validators=[],on_delete=models.CASCADE)
+	'''def clean(self):
+		for n in range(0,self.answers.all().len()):
+		
+			for b in range(0,self.answers.all().len())
+				if answers[n].chapter==answers[b].chapter and b !=n:
+					raise ValidationError('only one answer per chapter')'''
 
-
-=======
