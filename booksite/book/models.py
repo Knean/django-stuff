@@ -22,7 +22,7 @@ class Chapter(models.Model):
 
 
 class Answer(models.Model):
-	chapter=models.OneToOneField(Chapter,on_delete=models.CASCADE)
+	chapter=models.ForeignKey(Chapter,on_delete=models.CASCADE)
 	answer_text=models.TextField()
 	answer_image = models.FileField(upload_to='uploads/')
 	def __str__(self):
@@ -35,11 +35,16 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-	answers=models.ForeignKey(Answer,null=True,validators=[],on_delete=models.CASCADE)
-	'''def clean(self):
-		for n in range(0,self.answers.all().len()):
+	answers=models.ManyToManyField(Answer,validators=[])
+	def clean(self):
+		#raise ValidationError('only one answer per chapter')
 		
-			for b in range(0,self.answers.all().len())
-				if answers[n].chapter==answers[b].chapter and b !=n:
-					raise ValidationError('only one answer per chapter')'''
+		'''
+		for n in range(0,self.answers.all().count()):
+			
+		
+			for b in range(0,self.answers.all().count()):
+				if self.answers.all()[n].chapter==self.answers.all()[b].chapter and b !=n:
+					print("gaaaaaaaaaaaaaaaaaaaaaaaaaaay")'''
+					#raise ValidationError('only one answer per chapter')
 
