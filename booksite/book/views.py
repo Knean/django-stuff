@@ -29,10 +29,17 @@ class start(FormView):
 			initial = super().get_form_kwargs()
 			initial['user']=get_user(self.request)
 			return initial
+<<<<<<< HEAD
 		'''def get_form(self,*args,**kwargs):
 			self.form_class.declared_fields['field1'].queryset=kwargs.pop('user',None)
 			
 			super().get_form()'''
+=======
+		def get_form(self,*args,**kwargs):
+			self.form_class.declared_fields['field1'].queryset=kwargs.pop('user',None)
+			
+			super().get_form()
+>>>>>>> dff9c4d50d8bba183ec6957611905ad919c2792a
 		#print('viiiiew',print(inital))
     	#def get(self, request, *args, **kwargs):
     			#form = ChapterForm
