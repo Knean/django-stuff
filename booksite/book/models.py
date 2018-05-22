@@ -29,7 +29,6 @@ class Answer(models.Model):
 		return self.answer_text
 	
 
-	
 class Profile(models.Model):
 	user=models.OneToOneField(
         settings.AUTH_USER_MODEL,
@@ -40,11 +39,15 @@ class Profile(models.Model):
 		#raise ValidationError('only one answer per chapter')
 		
 		'''
-		for n in range(0,self.answers.all().count()):
-			
+		for n in range(0,self.answers.all().count()):	
 		
 			for b in range(0,self.answers.all().count()):
 				if self.answers.all()[n].chapter==self.answers.all()[b].chapter and b !=n:
 					print("gaaaaaaaaaaaaaaaaaaaaaaaaaaay")'''
 					#raise ValidationError('only one answer per chapter')
 
+class PlayerVariables(models.Model):
+    	user=models.OneToOneField(Profile, on_delete=models.CASCADE)    	
+    	last_chapter= models.CharField(max_length=100)
+
+	

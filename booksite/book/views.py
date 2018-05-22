@@ -12,12 +12,17 @@ from django.views.generic.base import TemplateView
 from .forms import ChapterForm
 from django.contrib.auth import get_user
 # Create your views here.
+def get_chapter(argument):
+	chapter=Chapter.objects.get(chapter_text= get_user(argument).profile.playervariables.last_chapter)
+	return Chapter.objects.get(chapter_text=chapter)
 class home(View):
+
 	def get(self, request, *args, **kwargs):
+		selected_chapter=get_chapter(self.request)
 		template=get_template('book/index.html')
 		chapter_list=Chapter.objects.all()
 		
-		return HttpResponse(template.render({'chapter_list':chapter_list}))
+		return HttpResponse(template.render({'chapter_list':chapter_list,'selected_chapter':selected_chapter}))
 class start(FormView):
     	
 		form_class= ChapterForm
@@ -29,17 +34,10 @@ class start(FormView):
 			initial = super().get_form_kwargs()
 			initial['user']=get_user(self.request)
 			return initial
-<<<<<<< HEAD
 		'''def get_form(self,*args,**kwargs):
 			self.form_class.declared_fields['field1'].queryset=kwargs.pop('user',None)
 			
 			super().get_form()'''
-=======
-		def get_form(self,*args,**kwargs):
-			self.form_class.declared_fields['field1'].queryset=kwargs.pop('user',None)
-			
-			super().get_form()
->>>>>>> dff9c4d50d8bba183ec6957611905ad919c2792a
 		#print('viiiiew',print(inital))
     	#def get(self, request, *args, **kwargs):
     			#form = ChapterForm

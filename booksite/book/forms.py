@@ -20,7 +20,6 @@ class ProfileForm(ModelForm):
                     raise ValidationError('only one answer per chapter')
 
 class ChapterForm(ModelForm):
-<<<<<<< HEAD
     class Meta:
         model=Chapter
         fields = '__all__'
@@ -34,18 +33,6 @@ class ChapterForm(ModelForm):
         
     #self.fields['field1'].queryset = self.request.user.profile
 
-=======
-    field1 = forms.ModelChoiceField(queryset=None, empty_label="(Nothing)")
-    '''def __init__(self, *args, **kwargs):
-        self.fields['field1'].queryset=kwargs.pop('user',None)
-        #forms.ModelChoiceField(queryset=kwargs.pop('user',None), empty_label="(Nothing)")
-        print('aaaaaaaaaaargs',kwargs)
-        super().__init__(*args, **kwargs)'''
-    #self.fields['field1'].queryset = self.request.user.profile
-    class Meta:
-        model=Chapter
-        fields = '__all__'
->>>>>>> dff9c4d50d8bba183ec6957611905ad919c2792a
     
     #mario1 = forms.CharField()
 
